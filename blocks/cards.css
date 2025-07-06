@@ -1,0 +1,49 @@
+.cards {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(413px, 1fr));
+  grid-column-gap: 20px;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+}
+
+.cards__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.cards__image {
+  width: 100%;
+  aspect-ratio: 1; /*For a square image, you'd use aspect-ratio: 1/1 (or just aspect-ratio: 1)*/
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cards__image-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.cards__image-description {
+  margin: 12px 0 0;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 20px;
+  color: #212121;
+  line-height: 120%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.cards__image-icon {
+  width: 23px;
+  height: 20px;
+  margin: 12px 0 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 630px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+  }
+}

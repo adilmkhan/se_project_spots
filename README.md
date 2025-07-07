@@ -22,6 +22,6 @@ This is the third Tripleten project -Spots- that tackles responsive design of we
 
 While the project sets the stage for a functional and responsive UI design for a spots website, it can be imporved by adding a few animations. Secondly, we are currently only using HTML and CSS technologies without JS. The next iteration of this project would be to use JS to make it more performant by sending data across the wire to an endpoint server and subsequently collecting the data in a relational/object/block storage for querying/analytics further downstream.
 
-### Click **[here]()** to view the webpage on Github.
+### Click **[here](https://adilmkhan.github.io/se_project_spots/)** to view the webpage on Github.
 
-### Click **[here]()** for a video about the technical details of the Project.
+### Click **[here](https://drive.google.com/file/d/1YUe9MOms44063-c8X-TskU65J8rtbBfw/view?usp=sharing)** for a video about the technical details of the Project.

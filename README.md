@@ -2,7 +2,7 @@
 
 ## Project Description:
 
-This is the third Tripleten project that tackles responsive design of webpage elements across various viewports. The project is divided into three parts: Profile, Cards, and Footer. The design incorporates responsive design technologies for the aforementioned parts like Grid, Flexbox, and relative values in CSS all the while ensuring that displays with width 320px or more don't have horizontal scaling.
+This is the third Tripleten project -Spots- that tackles responsive design of webpage elements across various viewports. The project is divided into three parts: Profile, Cards, and Footer. The design incorporates responsive design technologies for the aforementioned parts like Grid, Flexbox, and relative values in CSS all the while ensuring that displays with width 320px or more don't have horizontal scaling.
 
 ## List of Tools and Technologies Incorporated in Design:
 

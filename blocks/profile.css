@@ -97,15 +97,6 @@
   height: 12px;
 }
 
-.cards__image-icon {
-  opacity: 40%;
-  transition: opacity 1s linear;
-}
-
-.cards__image-icon:hover {
-  opacity: 100%;
-}
-
 @media screen and (min-width: 320px) and (max-width: 630px) {
   .profile {
     flex-direction: column;

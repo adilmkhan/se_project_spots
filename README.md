@@ -17,10 +17,11 @@ This is the third Tripleten project -Spots- that tackles responsive design of we
 - BEM file structure
 - Media Queries
 - Text Overflow
+- Js
 
 ## Plan on improving the project:
 
-While the project sets the stage for a functional and responsive UI design for a spots website, it can be imporved by adding a few animations. Secondly, we are currently only using HTML and CSS technologies without JS. The next iteration of this project would be to use JS to make it more performant by sending data across the wire to an endpoint server and subsequently collecting the data in a relational/object/block storage for querying/analytics further downstream.
+While the project sets the stage for a responsive UI design for a spots website and is functional via js, it can be imporved by adding a few animations. The next iteration would be sending data across the wire to an endpoint server and subsequently collecting the data in a relational/object/block storage for querying/analytics further downstream.
 
 ### Click **[here](https://adilmkhan.github.io/se_project_spots/)** to view the webpage on Github.
 

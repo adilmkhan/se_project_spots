@@ -5,7 +5,7 @@ const profileFormElement = editModal.querySelector(".modal__form");
 const newPostButton = document.querySelector(".profile__add-btn");
 const postModal = document.querySelector("#new-post-modal");
 const postCloseButton = postModal.querySelector(".modal__button-close");
-const postForm = postModal.querySelector(".modal__form");
+const addCardFormElement = postModal.querySelector(".modal__form");
 
 // Select the necessary form elements. You should select
 // these from inside the modal, not the document.
@@ -16,6 +16,9 @@ const jobInput = profileFormElement.querySelector("#description"); // Use queryS
 // the profile elements from the document.
 const profileNameElement = document.querySelector(".profile__name"); // Use querySelector()
 const profileJobElement = document.querySelector(".profile__description"); // Use querySelector()
+
+const linkInput = addCardFormElement.querySelector("#image-link"); // Use querySelector()
+const captionInput = addCardFormElement.querySelector("#caption"); // Use querySelector()
 
 // Create the form submission handler.
 function handleProfileFormSubmit(evt) {
@@ -32,6 +35,19 @@ function handleProfileFormSubmit(evt) {
 
   // Close the modal.
   editModal.classList.remove("modal_is-opened");
+}
+
+// Create the form submission handler.
+function handleAddCardSubmit(evt) {
+  // Prevent default browser behavior.
+  evt.preventDefault();
+
+  // Log both input values to the console.
+  console.log(linkInput.value);
+  console.log(captionInput.value);
+
+  // Close the modal.
+  postModal.classList.remove("modal_is-opened");
 }
 
 editButton.addEventListener("click", function () {
@@ -54,7 +70,4 @@ postCloseButton.addEventListener("click", function () {
   postModal.classList.remove("modal_is-opened");
 });
 
-postForm.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  postModal.classList.remove("modal_is-opened");
-});
+addCardFormElement.addEventListener("submit", handleAddCardSubmit);

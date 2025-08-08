@@ -42,7 +42,7 @@
 }
 
 .modal__button-close {
-  background-image: url(../images/close_button.svg);
+  background-image: url(../images/close_button_new.svg);
   position: absolute;
   height: 40px;
   width: 40px;
@@ -62,7 +62,7 @@
 }
 
 .modal__form-title {
-  font-family: Poppins;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 32px;
   margin: 0;
@@ -70,7 +70,7 @@
 }
 
 .modal__form-label {
-  font-family: Poppins;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 16px;
   margin: 32px 0 0;
@@ -87,16 +87,15 @@
   border-radius: 8px;
   font-size: 20px;
   line-height: 1;
-  opacity: 40%;
   transition: opacity 1s linear;
 }
 
 .modal__form-input:hover {
-  opacity: 100%;
+  border-color: rgba(33, 33, 33, 1);
 }
 
 .modal__form-input::placeholder {
-  font-family: Poppins;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
@@ -110,20 +109,18 @@
   border-radius: 8px;
   padding: 18px 58px;
   color: #fcf5e5;
-  font-family: Poppins;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-style: Medium;
   font-size: 16px;
   line-height: 100%;
   margin: 32px 0 0;
   cursor: pointer;
   border: none;
-  opacity: 40%;
   transition: opacity 1s linear;
 }
 
 .modal__button-save:hover {
-  opacity: 100%;
+  opacity: 80%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 630px) {

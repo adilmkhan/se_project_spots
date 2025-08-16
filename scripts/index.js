@@ -34,18 +34,38 @@ const postModal = document.querySelector("#new-post-modal");
 const postCloseButton = postModal.querySelector(".modal__button-close");
 const addCardFormElement = postModal.querySelector(".modal__form");
 
-// Select the necessary form elements. You should select
-// these from inside the modal, not the document.
 const nameInput = profileFormElement.querySelector("#name"); // Use querySelector()
 const jobInput = profileFormElement.querySelector("#description"); // Use querySelector()
 
-// If you haven't done so already, select
-// the profile elements from the document.
 const profileNameElement = document.querySelector(".profile__name"); // Use querySelector()
 const profileJobElement = document.querySelector(".profile__description"); // Use querySelector()
 
 const linkInput = addCardFormElement.querySelector("#image-link"); // Use querySelector()
 const captionInput = addCardFormElement.querySelector("#caption"); // Use querySelector()
+
+const cardsContainer = document.querySelector(".cards");
+
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".cards__column");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".cards__image");
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+
+  const cardTitle = cardElement.querySelector(".cards__image-description");
+  cardTitle.textContent = data.name;
+
+  const cardLikeBtn = cardElement.querySelector(".cards__like-button");
+  cardLikeBtn.addEventListener("click", function (evt) {
+    evt.target.classList.toggle("card__button_active");
+  });
+
+  return cardElement;
+}
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
@@ -55,33 +75,22 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
 
-// Create the form submission handler.
 function handleProfileFormSubmit(evt) {
-  // Prevent default browser behavior.
   evt.preventDefault();
 
-  // Get the values of each form field from the value
-  // property of the corresponding input element.
-
-  // Insert these new values into the textContent
-  // property of the corresponding profile elements.
   profileNameElement.textContent = nameInput.value;
   profileJobElement.textContent = jobInput.value;
 
-  // Close the modal.
   closeModal(editModal);
 }
 
-// Create the form submission handler.
 function handleAddCardSubmit(evt) {
-  // Prevent default browser behavior.
   evt.preventDefault();
-
-  // Log both input values to the console.
-  console.log(linkInput.value);
-  console.log(captionInput.value);
-
-  // Close the modal.
+  const handlerObject = {
+    link: linkInput.value,
+    name: captionInput.value,
+  };
+  renderCardElement(handlerObject);
   closeModal(postModal);
 }
 
@@ -107,6 +116,11 @@ postCloseButton.addEventListener("click", function () {
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
+function renderCardElement(data) {
+  const cardEl = getCardElement(data);
+  cardsContainer.prepend(cardEl);
+}
+
 initialCards.forEach((element) => {
-  console.log(element.name);
+  renderCardElement(element);
 });

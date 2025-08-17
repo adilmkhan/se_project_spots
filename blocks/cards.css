@@ -10,6 +10,7 @@
 .cards__column {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .cards__image {
@@ -40,19 +41,47 @@
 }
 
 .cards__like-button {
-  background-image: url(../images/Union.svg);
-  background-color: #fcf5e5;
+  background-image: url(../images/default_like-icon.svg);
+  background-color: transparent;
   width: 23px;
   height: 20px;
   margin: 12px 0 0;
-  opacity: 40%;
-  transition: opacity 1s linear;
+  transition: background-image 1s linear;
   border: none;
   cursor: pointer;
 }
 
 .cards__like-button:hover {
-  opacity: 100%;
+  background-image: url(../images/like_hover-icon.svg);
+}
+
+.cards__delete-button {
+  background-image: url(../images/delete_icon.svg);
+  position: absolute;
+  background-color: transparent;
+  top: 10px;
+  right: 10px;
+  height: 32px;
+  width: 32px;
+  border: none;
+  cursor: pointer;
+}
+
+.cards__delete-button:hover {
+  background-image: url(../images/delete_icon_hover.svg);
+}
+
+.card__button_active {
+  background-image: url(../images/active_like-btn.svg);
+  background-color: transparent;
+  border: none;
+  width: 22px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.card__button_active:hover {
+  background-image: url(../images/active_like-hoverbtn.svg);
 }
 
 @media screen and (min-width: 320px) and (max-width: 630px) {

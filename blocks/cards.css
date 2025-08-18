@@ -19,6 +19,7 @@
   object-fit: cover;
   border-radius: 8px;
   display: block;
+  cursor: pointer;
 }
 
 .cards__image-content {
@@ -37,7 +38,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  flex-basis: 353px; /*testing*/
+  flex-basis: 353px;
 }
 
 .cards__like-button {
@@ -71,7 +72,7 @@
   background-image: url(../images/delete_icon_hover.svg);
 }
 
-.card__button_active {
+.cards__like-button_active {
   background-image: url(../images/active_like-btn.svg);
   background-color: transparent;
   border: none;
@@ -80,7 +81,7 @@
   cursor: pointer;
 }
 
-.card__button_active:hover {
+.cards__like-button_active:hover {
   background-image: url(../images/active_like-hoverbtn.svg);
 }
 

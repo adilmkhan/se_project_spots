@@ -44,11 +44,19 @@
         <section class="cards page__section">
           <template id="card-template">
             <div class="cards__column">
-              <img class="cards__image" />
+              <img class="cards__image" alt="cards_image" />
               <div class="cards__image-content">
                 <h2 class="cards__image-description"></h2>
-                <button type="button" class="cards__like-button"></button>
-                <button type="button" class="cards__delete-button"></button>
+                <button
+                  type="button"
+                  class="cards__like-button"
+                  aria-label="Like card"
+                ></button>
+                <button
+                  type="button"
+                  class="cards__delete-button"
+                  aria-label="Delete card"
+                ></button>
               </div>
             </div>
           </template>
@@ -61,7 +69,11 @@
     <div class="modal" id="edit-profile-modal">
       <div class="modal__container">
         <form class="modal__form">
-          <button type="button" class="modal__button-close"></button>
+          <button
+            type="button"
+            class="modal__button-close"
+            aria-label="Close modal"
+          ></button>
           <h2 class="modal__form-title">Edit Profile</h2>
           <label for="name" class="modal__form-label">Name</label>
           <input
@@ -70,6 +82,7 @@
             id="name"
             name="name"
             placeholder="Type your name"
+            required
           />
           <label for="description" class="modal__form-label">Description</label>
           <input
@@ -78,6 +91,7 @@
             id="description"
             name="description"
             placeholder="Describe yourself"
+            required
           />
           <button type="submit" class="modal__button-save">Save</button>
         </form>
@@ -86,7 +100,11 @@
     <div class="modal" id="new-post-modal">
       <div class="modal__container">
         <form class="modal__form">
-          <button type="button" class="modal__button-close"></button>
+          <button
+            type="button"
+            class="modal__button-close"
+            aria-label="Close modal"
+          ></button>
           <h2 class="modal__form-title">New Post</h2>
           <label for="image-link" class="modal__form-label">Image Link</label>
           <input
@@ -95,6 +113,7 @@
             id="image-link"
             name="image-link"
             placeholder="Paste a link to the picture"
+            required
           />
           <label for="caption" class="modal__form-label">Caption</label>
           <input
@@ -103,6 +122,7 @@
             id="caption"
             name="caption"
             placeholder="Type your caption"
+            required
           />
           <button type="submit" class="modal__button-save">Save</button>
         </form>
@@ -113,6 +133,7 @@
         <button
           type="button"
           class="modal__button-close modal__button-close_type_preview"
+          aria-label="Close preview modal"
         ></button>
         <img src="#" alt="" class="modal__image" />
         <p class="modal__caption"></p>

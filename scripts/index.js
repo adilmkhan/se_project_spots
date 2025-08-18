@@ -81,7 +81,7 @@ function getCardElement(data) {
 
   const cardLikeBtn = cardElement.querySelector(".cards__like-button");
   cardLikeBtn.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("card__button_active");
+    evt.target.classList.toggle("cards__like-button_active");
   });
 
   const cardDeleteBtn = cardElement.querySelector(".cards__delete-button");
@@ -116,6 +116,7 @@ function handleAddCardSubmit(evt) {
     name: captionInput.value,
   };
   renderCardElement(handlerObject);
+  addCardFormElement.reset();
   closeModal(postModal);
 }
 
@@ -132,6 +133,7 @@ editCloseButton.addEventListener("click", function () {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 newPostButton.addEventListener("click", function () {
+  addCardFormElement.reset();
   openModal(postModal);
 });
 

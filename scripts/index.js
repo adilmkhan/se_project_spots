@@ -49,6 +49,16 @@ const captionInput = addCardFormElement.querySelector("#caption"); // Use queryS
 
 const cardsContainer = document.querySelector(".cards");
 
+const previewModal = document.querySelector("#preview-modal");
+const previewCloseBtn = previewModal.querySelector(".modal__button-close");
+const previewModalImg = previewModal.querySelector(".modal__image");
+const previewModalCaption = previewModal.querySelector(".modal__caption");
+
+previewCloseBtn.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  closeModal(previewModal);
+});
+
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".cards__column");
@@ -59,6 +69,12 @@ function getCardElement(data) {
   const cardImage = cardElement.querySelector(".cards__image");
   cardImage.src = data.link;
   cardImage.alt = data.name;
+  cardImage.addEventListener("click", function () {
+    previewModalImg.src = data.link;
+    previewModalImg.alt = data.name;
+    previewModalCaption.textContent = data.name;
+    openModal(previewModal);
+  });
 
   const cardTitle = cardElement.querySelector(".cards__image-description");
   cardTitle.textContent = data.name;

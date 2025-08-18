@@ -43,11 +43,10 @@
 .modal__image {
   max-width: 80vw;
   max-height: 80vh;
-  width: 100%;
   object-fit: contain;
   display: block;
   border-radius: 8px;
-  /* max-width: unset; */
+  width: 100%;
 }
 
 .modal__caption {

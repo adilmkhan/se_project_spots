@@ -74,6 +74,7 @@ function getCardElement(data) {
     previewModalImg.alt = data.name;
     previewModalCaption.textContent = data.name;
     openModal(previewModal);
+    modalSelection(previewModal); //Testing
   });
 
   const cardTitle = cardElement.querySelector(".cards__image-description");
@@ -124,6 +125,7 @@ editButton.addEventListener("click", function () {
   openModal(editModal);
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
+  modalSelection(editModal); //testing
 });
 
 editCloseButton.addEventListener("click", function () {
@@ -135,6 +137,7 @@ profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 newPostButton.addEventListener("click", function () {
   addCardFormElement.reset();
   openModal(postModal);
+  modalSelection(postModal); //Testing
 });
 
 postCloseButton.addEventListener("click", function () {
@@ -151,3 +154,14 @@ function renderCardElement(data) {
 initialCards.forEach((element) => {
   renderCardElement(element);
 });
+
+const modalSelection = (modal) => {
+  const modalList = Array.from(document.querySelectorAll(".modal"));
+  modalList.forEach((modalElement) => {
+    modalElement.addEventListener("click", function (evt) {
+      if (evt.target.classList.contains("modal")) {
+        closeModal(modal);
+      }
+    });
+  });
+};

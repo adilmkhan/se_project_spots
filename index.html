@@ -83,7 +83,10 @@
             name="name"
             placeholder="Type your name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__input-error name-error"></span>
           <label for="description" class="modal__form-label">Description</label>
           <input
             type="text"
@@ -92,8 +95,13 @@
             name="description"
             placeholder="Describe yourself"
             required
+            minlength="2"
+            maxlength="200"
           />
-          <button type="submit" class="modal__button-save">Save</button>
+          <span class="modal__input-error description-error"></span>
+          <button type="submit" class="modal__button modal__button-save">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -108,13 +116,14 @@
           <h2 class="modal__form-title">New Post</h2>
           <label for="image-link" class="modal__form-label">Image Link</label>
           <input
-            type="text"
+            type="url"
             class="modal__form-input"
             id="image-link"
             name="image-link"
             placeholder="Paste a link to the picture"
             required
           />
+          <span class="modal__input-error image-link-error"></span>
           <label for="caption" class="modal__form-label">Caption</label>
           <input
             type="text"
@@ -123,8 +132,13 @@
             name="caption"
             placeholder="Type your caption"
             required
+            minlength="2"
+            maxlength="30"
           />
-          <button type="submit" class="modal__button-save">Save</button>
+          <span class="modal__input-error caption-error"></span>
+          <button type="submit" class="modal__button modal__button-save">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -140,5 +154,6 @@
       </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>

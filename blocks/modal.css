@@ -163,6 +163,34 @@
   opacity: 80%;
 }
 
+.modal__input-error {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 0, 0, 0.7);
+  opacity: 0;
+  margin: 8px 0;
+  transition: 0.3s;
+}
+
+.modal__input_type_error {
+  border-color: rgba(255, 0, 0, 0.6);
+}
+
+.modal__error_visible {
+  opacity: 1;
+}
+
+.modal__button_disabled {
+  color: #b8b8b8;
+  background: #ededed;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @media screen and (min-width: 320px) and (max-width: 630px) {
   .modal__container {
     width: 300px;

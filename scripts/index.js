@@ -55,7 +55,6 @@ const previewModalImg = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
 previewCloseBtn.addEventListener("click", function (evt) {
-  evt.preventDefault();
   closeModal(previewModal);
 });
 
@@ -121,10 +120,15 @@ function handleAddCardSubmit(evt) {
   };
   renderCardElement(handlerObject);
   addCardFormElement.reset();
+  const submitButton = addCardFormElement.querySelector(
+    settings.submitButtonSelector
+  );
+  disableButton(submitButton, settings);
   closeModal(postModal);
 }
 
 editButton.addEventListener("click", function () {
+  resetValidation(profileFormElement, settings);
   openModal(editModal);
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
@@ -137,7 +141,7 @@ editCloseButton.addEventListener("click", function () {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 newPostButton.addEventListener("click", function () {
-  addCardFormElement.reset();
+  resetValidation(addCardFormElement, settings);
   openModal(postModal);
 });
 

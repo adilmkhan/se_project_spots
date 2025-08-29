@@ -43,7 +43,6 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonElement, config) => {
-  console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -80,3 +79,33 @@ const enableValidation = (config) => {
 
 // Passing the configuration object to enableValidation when we call it.
 enableValidation(settings);
+
+function disableButton(buttonElement, settings) {
+  buttonElement.classList.add(settings.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
+function resetValidation(formElement, settings) {
+  // Get all input elements in the form
+  const inputList = Array.from(
+    formElement.querySelectorAll(settings.inputSelector)
+  );
+  const buttonElement = formElement.querySelector(
+    settings.submitButtonSelector
+  );
+
+  inputList.forEach((inputElement) => {
+    // Remove error class from input
+    inputElement.classList.remove(settings.inputErrorClass);
+
+    // Hide and clear the error message
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    if (errorElement) {
+      errorElement.textContent = "";
+      errorElement.classList.remove(settings.errorClass);
+    }
+  });
+
+  // Disable the submit button
+  disableButton(buttonElement, settings);
+}

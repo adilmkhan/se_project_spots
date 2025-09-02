@@ -44,8 +44,7 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.disabled = true;
+    disableButton(buttonElement, config);
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.disabled = false;
@@ -95,15 +94,7 @@ function resetValidation(formElement, settings) {
   );
 
   inputList.forEach((inputElement) => {
-    // Remove error class from input
-    inputElement.classList.remove(settings.inputErrorClass);
-
-    // Hide and clear the error message
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    if (errorElement) {
-      errorElement.textContent = "";
-      errorElement.classList.remove(settings.errorClass);
-    }
+    hideInputError(formElement, inputElement, settings);
   });
 
   // Disable the submit button

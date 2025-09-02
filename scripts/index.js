@@ -141,7 +141,6 @@ editCloseButton.addEventListener("click", function () {
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 newPostButton.addEventListener("click", function () {
-  resetValidation(addCardFormElement, settings);
   openModal(postModal);
 });
 

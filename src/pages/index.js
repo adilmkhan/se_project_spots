@@ -1,3 +1,13 @@
+import "./index.css";
+import Api from "../utils/Api.js";
+
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disableButton,
+} from "../scripts/validation.js";
+
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -53,6 +63,23 @@ const previewModal = document.querySelector("#preview-modal");
 const previewCloseBtn = previewModal.querySelector(".modal__button-close");
 const previewModalImg = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((result) => {
+    // process the result
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
 
 previewCloseBtn.addEventListener("click", function (evt) {
   closeModal(previewModal);
@@ -170,3 +197,5 @@ function escapeHandler(evt) {
     closeModal(document.querySelector(".modal_is-opened"));
   }
 }
+
+enableValidation(settings);

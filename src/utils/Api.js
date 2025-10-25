@@ -1,15 +1,23 @@
 class Api {
-  constructor(options) {
+  constructor({ baseUrl, headers }) {
     // constructor body
-    this._options = options;
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
+
+  getAppInfo() {
+    // This would be your Promise.all method
+    return Promise.all([
+      this.getInitialCards(),
+      this.getUserInfo(),
+      // this.editUserInfo()
+    ]);
   }
 
   getInitialCards() {
     // ...
-    return fetch("https://around-api.en.tripleten-services.com/v1", {
-      headers: {
-        authorization: "10abc176-5f60-4222-bc96-a24c68a63c53", // auth Token
-      },
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -22,11 +30,33 @@ class Api {
   // other methods for working with the API
   getUserInfo() {
     // Method to get user info
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 
-  getAppData() {
-    // This would be your Promise.all method
-    return Promise.all([this.getUserInfo(), this.getInitialCards]);
+  // Pass the data as an argument. In this example, we are using destructuring,
+  // so we would need to pass the function an object with properties called
+  // name and about.
+  editUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    }).then((res) => {
+      // handle the response
+      console.log(res);
+    });
   }
 }
 

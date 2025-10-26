@@ -27,7 +27,7 @@ class Api {
     });
   }
 
-  // other methods for working with the API
+  // Other methods for working with the API
   getUserInfo() {
     // Method to get user info
     return fetch(`${this._baseUrl}/users/me`, {
@@ -54,8 +54,27 @@ class Api {
         about,
       }),
     }).then((res) => {
-      // handle the response
-      console.log(res);
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+  editProfileAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 }

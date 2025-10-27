@@ -83,6 +83,7 @@ const profileAvatar = document.querySelector(".profile__avatar");
 
 let selectedCard;
 let selectedCardId;
+let likeCardId;
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -92,17 +93,13 @@ const api = new Api({
   },
 });
 
-//TODO-Destructure the second item in the callback of the .then()
 api
   .getAppInfo()
   .then(([cards, user]) => {
     cards.forEach((element) => {
       renderCardElement(element);
     });
-    //Handle the user's information
-    // - set the src of the avatar image [profileAvatar.src = avatar.value]
     profileAvatar.src = user.avatar;
-    // - set the textContent of both the text elements
     profileNameElement.textContent = user.name;
     profileJobElement.textContent = user.about;
   })
@@ -115,7 +112,6 @@ function handleProfileFormSubmit(evt) {
   api
     .editUserInfo({ name: nameInput.value, about: jobInput.value })
     .then((data) => {
-      //TODO- use the data arg instead of the hardcoded input values
       profileNameElement.textContent = data.name;
       profileJobElement.textContent = data.about;
       closeModal(editModal);
@@ -180,11 +176,6 @@ deleteModalCancelBtn.addEventListener("click", function () {
   closeModal(deleteModal);
 });
 
-//TODO -- create a avatarFormElement.addEventListener("submit", handleAvatarSubmit);
-//TODO -- create handleAvatarSubmit event handler
-// const avatarFormElement = avatarModal.querySelector(".modal__form");
-//const avatarLinkInput = avatarFormElement.querySelector("#image-link");
-
 avatarFormElement.addEventListener("submit", handleAvatarSubmit);
 const avatarLinkInput = avatarFormElement.querySelector("#image-link");
 
@@ -193,7 +184,6 @@ function handleAvatarSubmit(evt) {
   api
     .editProfileAvatar({ avatar: avatarLinkInput.value })
     .then((data) => {
-      //TODO- use the data arg instead of the hardcoded input values
       profileAvatar.src = data.avatar;
       profileAvatar.alt = "";
       avatarFormElement.reset();
@@ -213,12 +203,7 @@ function handleAddCardSubmit(evt) {
   api
     .addNewCard({ name: captionInput.value, link: linkInput.value })
     .then((data) => {
-      //TODO- use the data arg instead of the hardcoded input values
-      // const handlerObject = {
-      //   link: data.link,
-      //   name: data.name,
-      // };
-      renderCardElement(data); //handlerObject passed before
+      renderCardElement(data);
       addCardFormElement.reset();
       const submitButton = addCardFormElement.querySelector(
         settings.submitButtonSelector
@@ -247,19 +232,40 @@ function getCardElement(data) {
     openModal(previewModal);
   });
 
+  //TODO -- if the card is liked, set the active class on the card
+  function handleIsLiked() {
+    if (data.isLiked) {
+      cardElement
+        .querySelector(".cards__like-button")
+        .classList.add("cards__like-button_active");
+    } else {
+      cardElement
+        .querySelector(".cards__like-button")
+        .classList.remove("cards__like-button_active");
+    }
+  }
+  handleIsLiked();
   const cardTitle = cardElement.querySelector(".cards__image-description");
   cardTitle.textContent = data.name;
 
+  function hanldeLikeBtn(evt, cardId) {
+    likeCardId = cardId;
+    const isLiked = evt.target.classList.contains("cards__like-button_active");
+    api
+      .changeLikeStatus(likeCardId, isLiked)
+      .then(() => {
+        evt.target.classList.toggle("cards__like-button_active");
+      })
+      .catch(console.error);
+  }
+
   const cardLikeBtn = cardElement.querySelector(".cards__like-button");
-  cardLikeBtn.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("cards__like-button_active");
-  });
+  cardLikeBtn.addEventListener("click", (evt) => hanldeLikeBtn(evt, data._id));
 
   function handleDeleteCard(cardElement, cardId) {
     selectedCard = cardElement;
     selectedCardId = cardId;
     openModal(deleteModal);
-    // cardElement.remove;
   }
 
   const cardDeleteBtn = cardElement.querySelector(".cards__delete-button");
@@ -275,11 +281,8 @@ function handleDeleteSubmit(evt) {
   api
     .deleteCard(selectedCardId)
     .then(() => {
-      // TODO--remove the card from the DOM
-      //close modal
       selectedCard.remove();
       closeModal(deleteModal);
-      //clear the reference
       selectedCard = null;
       selectedCardId = null;
     })

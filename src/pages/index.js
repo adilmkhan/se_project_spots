@@ -1,5 +1,6 @@
 import "./index.css";
 import Api from "../utils/Api.js";
+import { setButtonText } from "../utils/helpers.js";
 
 import {
   enableValidation,
@@ -109,6 +110,9 @@ api
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+  //Change text content to saving...
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
   api
     .editUserInfo({ name: nameInput.value, about: jobInput.value })
     .then((data) => {
@@ -116,7 +120,11 @@ function handleProfileFormSubmit(evt) {
       profileJobElement.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      //change text content back to "Save"
+      setButtonText(submitBtn, false);
+    });
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
@@ -181,6 +189,8 @@ const avatarLinkInput = avatarFormElement.querySelector("#image-link");
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
   api
     .editProfileAvatar({ avatar: avatarLinkInput.value })
     .then((data) => {
@@ -193,13 +203,18 @@ function handleAvatarSubmit(evt) {
       disableButton(submitButton, settings);
       closeModal(avatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false);
+    });
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
   api
     .addNewCard({ name: captionInput.value, link: linkInput.value })
     .then((data) => {
@@ -211,7 +226,10 @@ function handleAddCardSubmit(evt) {
       disableButton(submitButton, settings);
       closeModal(postModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false);
+    });
 }
 
 function renderCardElement(data) {
@@ -278,6 +296,8 @@ function getCardElement(data) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Delete", "Deleting...");
   api
     .deleteCard(selectedCardId)
     .then(() => {
@@ -286,7 +306,10 @@ function handleDeleteSubmit(evt) {
       selectedCard = null;
       selectedCardId = null;
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Delete", "Deleting...");
+    });
 }
 
 deleteFormElement.addEventListener("submit", handleDeleteSubmit);

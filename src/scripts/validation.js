@@ -1,6 +1,6 @@
 // Declaring a configuration object that contains the
 // necessary classes and selectors.
-const settings = {
+export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__form-input",
   submitButtonSelector: ".modal__button",
@@ -65,7 +65,7 @@ const setEventListeners = (formElement, config) => {
   });
 };
 
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
@@ -76,15 +76,12 @@ const enableValidation = (config) => {
   });
 };
 
-// Passing the configuration object to enableValidation when we call it.
-enableValidation(settings);
-
-function disableButton(buttonElement, settings) {
+export function disableButton(buttonElement, settings) {
   buttonElement.classList.add(settings.inactiveButtonClass);
   buttonElement.disabled = true;
 }
 
-function resetValidation(formElement, settings) {
+export function resetValidation(formElement, settings) {
   // Get all input elements in the form
   const inputList = Array.from(
     formElement.querySelectorAll(settings.inputSelector)
